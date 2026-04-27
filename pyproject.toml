@@ -1,0 +1,15 @@
+[project]
+name = "img2ascii"
+version = "0.1.0"
+description = "A python implementation of the tree command"
+authors = [
+  { name = "User", email = "muthukamalan98@gmail.com" },
+]
+dependencies = [
+  "click",
+  "typer",
+  "loguru",
+  "pathspec",
+  "rich",
+]
+requires-python = ">=3.12"

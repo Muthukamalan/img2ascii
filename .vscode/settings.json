@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "**/.git": true // make false to show `.git` folder in vscode
+  },
+  "chat.disableAIFeatures": true
+}
