@@ -1,0 +1,39 @@
+name: Debug GitHub Context
+
+on:
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "Optional note"
+        required: false
+        default: "manual run"
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0  # Fetch all history all tag all branches
+          # ref: main     # Fetch only main branch
+
+          
+      - name: Print selected github.* variables
+        run: |
+          echo "actor         = ${{ github.actor }}"
+          echo "repository    = ${{ github.repository }}"
+          echo "workflow      = ${{ github.workflow }}"
+          echo "run_id        = ${{ github.run_id }}"
+          echo "run_number    = ${{ github.run_number }}"
+          echo "sha           = ${{ github.sha }}"
+          echo "ref           = ${{ github.ref }}"
+          echo "ref_name      = ${{ github.ref_name }}"
+          echo "event_name    = ${{ github.event_name }}"
+
+      - name: Print full github context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
