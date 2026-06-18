@@ -9,8 +9,19 @@ on:
         default: "manual run"
 
 jobs:
-  debug:
+  build:
+    name: building
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
+      # Configure a constant location for the uv cache
+      UV_CACHE_DIR: /tmp/.uv-cache
 
     steps:
       - name: Checkout
@@ -19,7 +30,29 @@ jobs:
           fetch-depth: 0  # Fetch all history all tag all branches
           # ref: main     # Fetch only main branch
 
-          
+      - name: Set up Python
+        run: actions/setup-python@v6
+        
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          enable-cache: true
+
+      - name: Restore uv cache
+        uses: actions/cache@v5
+        with:
+          path: ${{ env.UV_CACHE_DIR }}                             # check env on `debug` step 
+          key: uv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
+          restore-keys: |
+            uv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
+            uv-${{ runner.os }}
+
+
+  debug:
+    name: debugging
+    runs-on: ubuntu-latest
+    steps:
       - name: Print selected github.* variables
         run: |
           echo "actor         = ${{ github.actor }}"
