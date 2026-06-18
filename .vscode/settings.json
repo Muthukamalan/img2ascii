@@ -2,5 +2,8 @@
   "files.exclude": {
     "**/.git": true // make false to show `.git` folder in vscode
   },
-  "chat.disableAIFeatures": true
+  "chat.disableAIFeatures": true,
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda",
+  "chat.agent.enabled": false
 }
