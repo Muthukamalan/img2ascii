@@ -31,7 +31,7 @@
   //       "dockerDashCompose": "true"
   //     }
   //   },
-  "onCreateCommand": "echo OnCreateCmd",
+  "onCreateCommand": "apt update && apt install make -y",
   // "postStartCommand": "apt update && apt install git make",
   "remoteUser": "root"
 }
