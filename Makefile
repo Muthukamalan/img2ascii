@@ -2,7 +2,7 @@
 
 VENV := .venv
 SRC  := src
-PKG  := img2ascii
+PKG  := media2ascii
 
 # Default target when running just 'make'
 .DEFAULT_GOAL := help
@@ -20,11 +20,11 @@ install-prod: ## Install production dependencies only
 # ── Development ─────────────────────────────────────────────────────────────
 
 .PHONY: run
-run: ## Run img2ascii CLI (pass IMAGE=<path> [SIZE=<n>] [SAVE=<path>])
+run: ## Run media2ascii CLI (pass IMAGE=<path> [SIZE=<n>] [SAVE=<path>])
 	@if [ -z "$(IMAGE)" ]; then echo "Error: IMAGE=<path> is required."; exit 1; fi
 	$(eval SIZE ?= 120)
 	$(eval SAVE_ARG := $(if $(SAVE),--save $(SAVE),))
-	uv run img2ascii --path "$(IMAGE)" --size $(SIZE) $(SAVE_ARG)
+	uv run media2ascii --path "$(IMAGE)" --size $(SIZE) $(SAVE_ARG)
 
 # ── Testing ─────────────────────────────────────────────────────────────────
 
@@ -36,9 +36,6 @@ test: ## Run pytest
 test-cov: ## Run pytest with coverage report
 	uv run pytest --cov=$(SRC)/$(PKG) --cov-report=term-missing --cov-report=html
 
-.PHONY: test-watch
-test-watch: ## Re-run tests on file change (requires watchexec)
-	watchexec -e py -- uv run pytest
 
 # ── Linting & Formatting ────────────────────────────────────────────────────
 
