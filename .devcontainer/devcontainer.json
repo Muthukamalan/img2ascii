@@ -4,14 +4,17 @@
   "postCreateCommand": "uv self version",
   "runArgs": [
     "--add-host=host.docker.internal:host-gateway",
-    "--rm"
+    "--rm",
+    "--name", "media2ascii"
   ],
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.vscode-pylance",
         "ms-toolsai.jupyter",
-        "ms-python.python"
+        "ms-python.python",
+        "GitHub.vscode-github-actions",
+        "tamasfe.even-better-toml"
       ],
       "settings": {}
     }
