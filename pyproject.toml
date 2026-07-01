@@ -3,41 +3,31 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "img2ascii"
-version = "0.1.0"
-description = "Convert images to ASCII art in your terminal"
+name = "media2ascii"
+version = "1.0.0"
+description = "I Love Ascii##"
 readme = "README.md"
-license = { text = "MIT" }
-authors = [
-  { name = "Muthukamalan", email = "muthukamalan98@gmail.com" },
-]
-classifiers = [
-    "Intended Audience :: Developers",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Topic :: Multimedia :: Graphics",
-]
+requires-python = ">=3.13"
 
-requires-python = ">=3.12"
 dependencies = [
-  "typer>=0.25.1",
-  "Pillow>=12.2.0",
-  "loguru>=0.7.0",
-  "rich>=14.3.4",
+    "loguru>=0.7.3",
+    "opencv-python-headless>=4.13.0.92",
+    "pillow>=12.3.0",
+    "rich>=15.0.0",
+    "typer>=0.26.8",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-  "pytest>=7.4.0",
-  "pytest-cov>=4.1.0",
-  "ruff>=0.1.0",
-  "watchexec-py>=2.0.0",
+    "pre-commit>=4.6.0",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.15.20",
 ]
+
 
 [project.scripts]
-img2ascii = "img2ascii.cli:app"
+media2ascii = "media2ascii.cli:app"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -45,7 +35,7 @@ addopts = "-v --strict-markers"
 
 
 [tool.coverage.run]
-source = ["src/img2ascii"]
+source = ["src/media2ascii"]
 omit = ["*/__init__.py"]
 
 
@@ -119,4 +109,3 @@ skip-magic-trailing-comma = false
 
 # Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
-
